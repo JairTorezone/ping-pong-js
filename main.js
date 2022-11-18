@@ -2,15 +2,23 @@ const canvasEl = document.querySelector("canvas"),
   canvasCtx = canvasEl.getContext("2d");
 const lineWidth = 15;
 
+//desenho campo
+const field = {
+  w: window.innerWidth,
+  h: window.innerHeight,
+  draw: function () {
+    canvasCtx.fillStyle = "#286047";
+    canvasCtx.fillRect(0, 0, window.innerWidth, window.innerHeight);
+  },
+};
+
 function septup() {
   canvasEl.width = canvasCtx.width = window.innerWidth;
   canvasEl.height = canvasCtx.height = window.innerHeight;
 }
 
 function draw() {
-  //desenho campo
-  canvasCtx.fillStyle = "#286047";
-  canvasCtx.fillRect(0, 0, window.innerWidth, window.innerHeight);
+  field.draw();
 
   canvasCtx.fillStyle = "#FFF";
 
