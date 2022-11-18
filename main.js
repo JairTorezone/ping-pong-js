@@ -8,17 +8,25 @@ function septup() {
 }
 
 function draw() {
+  //desenho campo
   canvasCtx.fillStyle = "#286047";
   canvasCtx.fillRect(0, 0, window.innerWidth, window.innerHeight);
 
   canvasCtx.fillStyle = "#FFF";
 
-  const x = window.innerWidth / 2 - lineWidth / 2;
-  const y = 0;
-  const w = lineWidth;
-  const h = window.innerHeight;
+  //desenho linha central
+  canvasCtx.fillRect(
+    window.innerWidth / 2 - lineWidth / 2,
+    0,
+    lineWidth,
+    window.innerHeight
+  );
 
-  canvasCtx.fillRect(x, y, w, h);
+  //desenho raquete esquerda
+  canvasCtx.fillRect(10, 100, lineWidth, 200);
+
+  //desenho raquete direita
+  canvasCtx.fillRect(window.innerWidth - lineWidth - 10, 200, lineWidth, 200);
 }
 
 septup();
