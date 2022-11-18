@@ -27,6 +27,11 @@ function draw() {
 
   //desenho raquete direita
   canvasCtx.fillRect(window.innerWidth - lineWidth - 10, 200, lineWidth, 200);
+
+  //desenho a bolinha
+  canvasCtx.beginPath();
+  canvasCtx.arc(350, 300, 20, 0, 2 * Math.PI, false);
+  canvasCtx.fill();
 }
 
 septup();
