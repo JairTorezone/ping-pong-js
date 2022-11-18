@@ -23,7 +23,7 @@ const line = {
   },
 };
 
-//raquetes esquerda e direita
+//raquete esquerda
 const leftPaddle = {
   x: gapX,
   Y: 100,
@@ -34,7 +34,7 @@ const leftPaddle = {
     canvasCtx.fillRect(this.x, this.Y, this.w, this.h);
   },
 };
-
+//raquete direita
 const rightPaddle = {
   x: field.w - line.w - gapX,
   Y: 100,
@@ -51,24 +51,42 @@ function septup() {
   canvasEl.height = canvasCtx.height = field.h;
 }
 
+//desenho o placar
+const score = {
+  human: 1,
+  computer: 2,
+  draw: function () {
+    canvasCtx.font = "bold 72px Arial";
+    canvasCtx.textAlign = "center";
+    canvasCtx.textBaseline = "top";
+    canvasCtx.fillStyle = "#01341d";
+    canvasCtx.fillText(this.human, field.w / 4, 50);
+    canvasCtx.fillText(this.computer, field.w / 4 + field.w / 2, 50);
+  },
+};
+
+//desenho bola
+const ball = {
+  x: 300,
+  y: 200,
+  r: 20,
+  draw: function () {
+    canvasCtx.fillStyle = "#fff";
+    canvasCtx.beginPath();
+    canvasCtx.arc(this.x, this.y, this.r, 0, 2 * Math.PI, false);
+    canvasCtx.fill();
+  },
+};
+
 function draw() {
   field.draw();
   line.draw();
+
   leftPaddle.draw();
   rightPaddle.draw();
 
-  //desenho a bolinha
-  canvasCtx.beginPath();
-  canvasCtx.arc(350, 300, 20, 0, 2 * Math.PI, false);
-  canvasCtx.fill();
-
-  //desenho o placar
-  canvasCtx.font = "bold 72px Arial";
-  canvasCtx.textAlign = "center";
-  canvasCtx.textBaseline = "top";
-  canvasCtx.fillStyle = "#fff";
-  canvasCtx.fillText("3", window.innerWidth / 4, 50);
-  canvasCtx.fillText("1", window.innerWidth / 4 + window.innerWidth / 2, 50);
+  score.draw();
+  ball.draw();
 }
 
 septup();
