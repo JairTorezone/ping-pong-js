@@ -8,7 +8,17 @@ const field = {
   h: window.innerHeight,
   draw: function () {
     canvasCtx.fillStyle = "#286047";
-    canvasCtx.fillRect(0, 0, window.innerWidth, window.innerHeight);
+    canvasCtx.fillRect(0, 0, this.w, this.h);
+  },
+};
+
+//desenho linha
+const line = {
+  w: 15,
+  h: field.h,
+  draw: function () {
+    canvasCtx.fillStyle = "#FFF";
+    canvasCtx.fillRect(field.w / 2 - this.w / 2, 0, this.w, field.h);
   },
 };
 
@@ -19,16 +29,7 @@ function septup() {
 
 function draw() {
   field.draw();
-
-  canvasCtx.fillStyle = "#FFF";
-
-  //desenho linha central
-  canvasCtx.fillRect(
-    window.innerWidth / 2 - lineWidth / 2,
-    0,
-    lineWidth,
-    window.innerHeight
-  );
+  line.draw();
 
   //desenho raquete esquerda
   canvasCtx.fillRect(10, 100, lineWidth, 200);
