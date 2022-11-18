@@ -32,6 +32,14 @@ function draw() {
   canvasCtx.beginPath();
   canvasCtx.arc(350, 300, 20, 0, 2 * Math.PI, false);
   canvasCtx.fill();
+
+  //desenho o placar
+  canvasCtx.font = "bold 72px Arial";
+  canvasCtx.textAlign = "center";
+  canvasCtx.textBaseline = "top";
+  canvasCtx.fillStyle = "#fff";
+  canvasCtx.fillText("3", window.innerWidth / 4, 50);
+  canvasCtx.fillText("1", window.innerWidth / 4 + window.innerWidth / 2, 50);
 }
 
 septup();
