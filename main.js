@@ -1,6 +1,7 @@
 const canvasEl = document.querySelector("canvas"),
   canvasCtx = canvasEl.getContext("2d");
 const lineWidth = 15;
+gapX = 10;
 
 //desenho campo
 const field = {
@@ -22,20 +23,39 @@ const line = {
   },
 };
 
+//raquetes esquerda e direita
+const leftPaddle = {
+  x: gapX,
+  Y: 100,
+  w: line.w,
+  h: 200,
+  draw: function () {
+    canvasCtx.fillStyle = "#fff";
+    canvasCtx.fillRect(this.x, this.Y, this.w, this.h);
+  },
+};
+
+const rightPaddle = {
+  x: field.w - line.w - gapX,
+  Y: 100,
+  w: line.w,
+  h: 200,
+  draw: function () {
+    canvasCtx.fillStyle = "#fff";
+    canvasCtx.fillRect(this.x, this.Y, this.w, this.h);
+  },
+};
+
 function septup() {
-  canvasEl.width = canvasCtx.width = window.innerWidth;
-  canvasEl.height = canvasCtx.height = window.innerHeight;
+  canvasEl.width = canvasCtx.width = field.w;
+  canvasEl.height = canvasCtx.height = field.h;
 }
 
 function draw() {
   field.draw();
   line.draw();
-
-  //desenho raquete esquerda
-  canvasCtx.fillRect(10, 100, lineWidth, 200);
-
-  //desenho raquete direita
-  canvasCtx.fillRect(window.innerWidth - lineWidth - 10, 200, lineWidth, 200);
+  leftPaddle.draw();
+  rightPaddle.draw();
 
   //desenho a bolinha
   canvasCtx.beginPath();
