@@ -3,6 +3,8 @@ const canvasEl = document.querySelector("canvas"),
 const lineWidth = 15;
 gapX = 10;
 
+const mouse = { x: 0, y: 0 };
+
 //desenho campo
 const field = {
   w: window.innerWidth,
@@ -26,23 +28,34 @@ const line = {
 //raquete esquerda
 const leftPaddle = {
   x: gapX,
-  Y: 100,
+  y: 0,
   w: line.w,
   h: 200,
+  _move: function () {
+    this.y = mouse.y - this.h / 2;
+  },
   draw: function () {
-    canvasCtx.fillStyle = "#fff";
-    canvasCtx.fillRect(this.x, this.Y, this.w, this.h);
+    canvasCtx.fillStyle = "#ffffff";
+    canvasCtx.fillRect(this.x, this.y, this.w, this.h);
+
+    this._move();
   },
 };
+
 //raquete direita
 const rightPaddle = {
   x: field.w - line.w - gapX,
-  Y: 100,
+  y: 0,
   w: line.w,
   h: 200,
+  _move: function () {
+    this.y = ball.y;
+  },
   draw: function () {
-    canvasCtx.fillStyle = "#fff";
-    canvasCtx.fillRect(this.x, this.Y, this.w, this.h);
+    canvasCtx.fillStyle = "#ffffff";
+    canvasCtx.fillRect(this.x, this.y, this.w, this.h);
+
+    this._move();
   },
 };
 
@@ -96,6 +109,7 @@ function draw() {
   ball.draw();
 }
 
+//API - requestAnimationFrame suavilizar ball
 window.animateFrame = (function () {
   return (
     window.requestAnimationFrame ||
@@ -116,3 +130,8 @@ function main() {
 
 septup();
 main();
+
+canvasEl.addEventListener("mousemove", function (e) {
+  mouse.x = e.pageX;
+  mouse.y = e.pageY;
+});
