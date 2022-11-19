@@ -96,7 +96,23 @@ function draw() {
   ball.draw();
 }
 
-septup();
-draw();
+window.animateFrame = (function () {
+  return (
+    window.requestAnimationFrame ||
+    window.webkitRequestAnimationFrame ||
+    window.mozRequestAnimationFrame ||
+    window.oRequestAnimationFrame ||
+    window.msRequestAnimationFrame ||
+    function (callback) {
+      return window.setTimeout(callback, 1000 / 60);
+    }
+  );
+})();
 
-window.setInterval(draw, 1000 / 60);
+function main() {
+  animateFrame(main);
+  draw();
+}
+
+septup();
+main();
