@@ -48,11 +48,19 @@ const rightPaddle = {
   y: 0,
   w: line.w,
   h: 200,
+  speed: 5,
   _move: function () {
-    this.y = ball.y;
+    if (this.y + this.h / 2 < ball.y + ball.r) {
+      this.y += this.speed;
+    } else {
+      this.y -= this.speed;
+    }
+  },
+  sppedUp: function () {
+    this.speed += 2;
   },
   draw: function () {
-    canvasCtx.fillStyle = "#ffffff";
+    canvasCtx.fillStyle = "#fff";
     canvasCtx.fillRect(this.x, this.y, this.w, this.h);
 
     this._move();
@@ -66,8 +74,8 @@ function septup() {
 
 //desenho o placar
 const score = {
-  human: 1,
-  computer: 2,
+  human: 0,
+  computer: 0,
   increseHuman: function () {
     this.human++;
   },
@@ -86,8 +94,8 @@ const score = {
 
 //desenho bola
 const ball = {
-  x: 0,
-  y: 0,
+  x: field.w / 2,
+  y: field.h / 2,
   r: 20,
   speed: 5,
   directionX: 1,
@@ -135,7 +143,13 @@ const ball = {
   _reverseY: function () {
     this.directionY = this.directionY * -1;
   },
+  _speedUp: function () {
+    this.speed += 2;
+  },
   _pointUp: function () {
+    this._speedUp();
+    rightPaddle.sppedUp();
+
     this.x = field.w / 2;
     this.y = field.h / 2;
   },
