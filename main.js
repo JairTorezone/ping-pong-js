@@ -68,6 +68,12 @@ function septup() {
 const score = {
   human: 1,
   computer: 2,
+  increseHuman: function () {
+    this.human++;
+  },
+  increseComputer: function () {
+    this.computer++;
+  },
   draw: function () {
     canvasCtx.font = "bold 72px Arial";
     canvasCtx.textAlign = "center";
@@ -87,6 +93,19 @@ const ball = {
   directionX: 1,
   directionY: 1,
   _calcPosition: function () {
+    //vericando se o jogador 1 fez ponto (x > largura do campo)
+    if (this.x > field.w - this.r - rightPaddle.w - gapX) {
+      if (
+        this.y + this.r > rightPaddle.y &&
+        this.y - this.r < rightPaddle.y + rightPaddle.h
+      ) {
+        this._reverseX();
+      } else {
+        //Pontuar jogador humano
+        score.increseHuman();
+        this._pointUp();
+      }
+    }
     //verifica as laterais superior e inferior do campo
     if (
       (this.y - this.r < 0 && this.directionY < 0) ||
@@ -101,6 +120,10 @@ const ball = {
   },
   _reverseY: function () {
     this.directionY = this.directionY * -1;
+  },
+  _pointUp: function () {
+    this.x = field.w / 2;
+    this.y = field.h / 2;
   },
   _move: function () {
     this.x += this.directionX * this.speed;
