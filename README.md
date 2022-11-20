@@ -28,6 +28,7 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 - HTML
 - JavaScript
+- Canvas
 - API requestAnimationFrame 
 - Git e Github
 
