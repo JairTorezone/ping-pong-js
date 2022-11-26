@@ -48,7 +48,7 @@ Feito junto com ♥ by [DevSamurai](https://class.devsamurai.com.br/)
 ---
 
 ## Autor
-Jair Torezone Euzebio Ribeiro
+Jair Torezone E Ribeiro
 
 https://www.linkedin.com/in/jair-torezone/
 ---
