@@ -27,6 +27,7 @@ Criação do jogo ping pong para treinar a lógica de programação e os conceit
 Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 - HTML
+- CSS
 - JavaScript
 - Canvas
 - API requestAnimationFrame 
